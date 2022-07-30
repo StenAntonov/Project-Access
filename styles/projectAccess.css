@@ -118,6 +118,8 @@ main {
     font-weight: 600;
     text-align: right;
     text-transform: uppercase;
+    border: none;
+    background-color: transparent;
 }
 
 .th-user::after {
@@ -136,6 +138,12 @@ main {
     font-weight: 600;
     text-transform: uppercase;
     opacity: 37%;
+    border: none;
+    background-color: transparent;
+}
+
+.th-user, .th-role, .th-status:hover {
+    cursor: pointer;
 }
 
 .th-role {

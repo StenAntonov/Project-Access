@@ -3,7 +3,8 @@ import { html } from '../../node_modules/lit-html/lit-html.js';
 import { getAllUsers, inviteUser } from '../api/data.js';
 
 
-const homeTemplate = (onSubmit) => html`
+
+const homeTemplate = (onSubmit, users, sortByUsername, sortByRole, sortByStatus) => html`
 <header>
     <h1 class="header-h1">Project Access</h1>
     <div class="search">
@@ -13,67 +14,17 @@ const homeTemplate = (onSubmit) => html`
 </header>
 <main>
     <section class="table-contents">
-        <p class="th-user" onclick="sortByUsername()">user</p>
-        <p class="th-role" onclick="sortByRole()">role</p>
-        <p class="th-status" onclick="sortByStatus()">status</p>
+        <button @click=${sortByUsername} class="th-user">user</button>
+        <button @click=${sortByRole} class="th-role">role</button>
+        <button @click=${sortByStatus} class="th-status">status</button>
         <p class="th-action">action</p>
     </section>
     <section class="table-user-details">
-        <section class="user-row">
-            <article class="user-icon"></article>
-            <article class="name-and-mail">
-                <p class="user-name">Danniel Blichman</p>
-                <p class="user-mail">danniel.blichman@testtask.com</p>
-            </article>
-            <article class="user-role">
-                <article class="user-role-admin">Admin</article>
-                <article class="user-role-user">User</article>
-            </article>
-            <article class="user-status"></article>
-            <article class="user-action">
-                <a href="/user" class="user-setup"></a>
-                <a href="#" class="delete-user" onclick="deleteUser()"></a>
-            </article>
-            <article class="bottom-line"><img src="./assets/images/Rectangle 16.svg" alt="bottom-line">
-            </article>
-        </section>
-        <section class="user-row">
-            <article class="user-icon"></article>
-            <article class="name-and-mail">
-                <p class="user-name">Danniel Blichman</p>
-                <p class="user-mail">danniel.blichman@testtask.com</p>
-            </article>
-            <article class="user-role">
-                <article class="user-role-admin">Admin</article>
-                <article class="user-role-user">User</article>
-            </article>
-            <article class="user-status"></article>
-            <article class="user-action">
-                <a href="#" class="user-setup"></a>
-                <a href="#" class="delete-user" onclick="deleteUser()"></a>
-            </article>
-            <article class="bottom-line"><img src="./assets/images/Rectangle 16.svg" alt="bottom-line">
-            </article>
-        </section>
-        <section class="user-row">
-            <article class="user-icon"></article>
-            <article class="name-and-mail">
-                <p class="user-name">Danniel Blichman</p>
-                <p class="user-mail">danniel.blichman@testtask.com</p>
-            </article>
-            <article class="user-role">
-                <article class="user-role-admin">Admin</article>
-                <article class="user-role-user">User</article>
-            </article>
-            <article class="user-status"></article>
-            <article class="user-action">
-                <a href="#" class="user-setup"></a>
-                <a href="#" class="delete-user" onclick="deleteUser()"></a>
-            </article>
-            <article class="bottom-line"><img src="./assets/images/Rectangle 16.svg" alt="bottom-line">
-            </article>
-        </section>
-    </section>
+
+        ${users.length == 0 ? html`<p>No users in database!</p>` 
+        : users.map(userTemplate)}
+
+    
     <section class="paginator">
         <article class="pag-left">
             <p class="pag-rec">Records on page</p>
@@ -126,16 +77,50 @@ const homeTemplate = (onSubmit) => html`
     </div>
 </main>`;
 
+const userTemplate = (user) => html`
+<section class="user-row">
+            <article class="user-icon"></article>
+            <article class="name-and-mail">
+                <p class="user-name">${user.firstname}</p>
+                <p class="user-mail">${user.email}</p>
+            </article>
+            <article class="user-role">
 
-
+                ${user.role == "Admin" ? html`<article class="user-role-admin">${user.role}</article>`
+                : html`<article class="user-role-user">${user.role}</article>`}
+                
+            </article>
+            <article class="user-status"></article>
+            <article class="user-action">
+                <a href="/user" class="user-setup"></a>
+                <a href="#" class="delete-user" onclick="deleteUser()"></a>
+            </article>
+            <article class="bottom-line"><img src="./assets/images/Rectangle 16.svg" alt="bottom-line">
+            </article>
+        </section>
+`;
 
 const users = await getAllUsers();
 console.log(users);
 
-export async function homePage(ctx) {
 
-    // let users = await getAllUsers();
-    ctx.render(homeTemplate(onSubmit));
+export async function homePage(ctx) {
+    
+    let users = await getAllUsers();
+
+    function sortByUsername() {
+        console.log("it works");
+    }
+
+    function sortByRole() {
+
+    }
+
+    function sortByStatus() {
+        
+    }
+
+    ctx.render(homeTemplate(onSubmit, users, sortByUsername, sortByRole, sortByStatus));
 
     async function onSubmit(event) {
         event.preventDefault();
@@ -147,7 +132,6 @@ export async function homePage(ctx) {
         const role = formData.get('role');
         const status = "Active";
 
-        console.log(Date.now());
 
         const data = {
             userId: {
@@ -168,27 +152,23 @@ export async function homePage(ctx) {
         ctx.page.redirect('/home');
     }
 
+
     // Modal
 
-    // Get the modal
     var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
     var btn = document.getElementById("myBtn");
 
-    // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
     const form = document.querySelector('form');
     const formBtn = document.getElementsByClassName('invite-btn')[0];
 
-    // When the user clicks on the button, open the modal
     btn.onclick = function () {
         modal.style.display = "block";
         container.disable = true;
     }
 
-    // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
         modal.style.display = "none";
     }
