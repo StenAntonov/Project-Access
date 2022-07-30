@@ -1,0 +1,110 @@
+.user-icon {
+    content: url('../assets/images/userIcon.svg');
+    position: relative;
+    top: 34px;
+    left: 172px;
+    width: 46px;
+    height: 46px;
+}
+
+.user-name {
+    position: relative;
+    top: 39px;
+    left: 217px;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 21px;
+    color: #000000;
+    font-weight: 600;
+    text-align: left;
+}
+
+.user-mail {
+    position: relative;
+    top: 39px;
+    left: 217px;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 21px;
+    color: #000000;
+    font-weight: 300;
+    text-align: left;
+}
+
+.user-role-admin {
+    position: relative;
+    top: 39px;
+    left: 671px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21px;
+}
+
+.user-role-admin::after {
+    content: url('../assets/images/adminKeyForPink.svg');
+    display: inline-block;
+    width: 48px;
+    height: 32px;
+    background-color: #7E7EF1;
+    border-radius: 30px;
+    position: relative;
+    bottom: 28px;
+    left: -70px;
+    text-align: center;
+    padding-top: 3px;
+}
+
+.user-role-user {
+    position: relative;
+    top: -12px;
+    left: 666px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21px;
+}
+
+.user-setup {
+    content: url('../assets/images/settings.svg');
+    position: relative;
+    display: inline-block;
+    top: 48px;
+    left: 1391px;
+    width: 19px;
+    height: 19px;
+    opacity: 37%;
+}
+
+.delete-user {
+    content: url('../assets/images/delete.svg');
+    position: relative;
+    top: 25px;
+    left: 1435px;
+    width: 13px;
+    height: 17px;
+    opacity: 1;
+}
+
+.user-status {
+    content: url('../assets/images/statusOn.svg');
+    position: relative;
+    left: 1065px;
+    width: 41px;
+    height: 23px;
+    top: 46px;
+}
+
+.user-row {
+    height: 90.13px;
+    display: flex;
+}
+
+.bottom-line {
+    position: relative;
+    left: -96px;
+    display: inline;
+    top: 83px;
+}

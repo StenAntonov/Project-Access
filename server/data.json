@@ -1,0 +1,25 @@
+{
+    "users": {
+        "ff436770-76c5-40e2-b231-77409eda7a61": {
+            "firstname": "Danniel",
+            "lastname": "Blichman",
+            "email": "danniel.blichman@testtask.com",
+            "role": "Admin",
+            "status": "Active"
+        },
+        "ff436770-76c5-40e2-b231-77409eda7sd2": {
+            "firstname": "Margarette",
+            "lastname": "Jones",
+            "email": "margarette.jones@testtask.com",
+            "role": "User",
+            "status": "Active"
+        },
+        "ff436770-76c5-40e2-b231-77409eda7zx4": {
+            "firstname": "Bethany",
+            "lastname": "Doe",
+            "email": "bethany.doe@testtask.com",
+            "role": "User",
+            "status": "Active"
+        }
+    }
+}
