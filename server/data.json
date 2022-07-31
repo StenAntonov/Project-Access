@@ -1,28 +1,44 @@
 {
-    "users": [
-        {
-            "firstname": "Danniel",
-            "lastname": "Blichman",
-            "email": "danniel.blichman@testtask.com",
-            "role": "Admin",
-            "status": "Active",
-            "_id": "0"
-        },
-         {
-            "firstname": "Margarette",
-            "lastname": "Jones",
-            "email": "margarette.jones@testtask.com",
-            "role": "User",
-            "status": "Active",
-            "_id": "1"
-        },
-         {
-            "firstname": "Bethany",
-            "lastname": "Doe",
-            "email": "bethany.doe@testtask.com",
-            "role": "User",
-            "status": "Active",
-            "_id": "2"
-        }
-    ]
+  "users": {
+    "0": {
+      "firstname": "Danniel",
+      "lastname": "Blichman",
+      "email": "danniel.blichman@testtask.com",
+      "role": "Admin",
+      "status": "Active",
+      "_id": "0"
+    },
+    "1": {
+      "firstname": "Margarette",
+      "lastname": "Jones",
+      "email": "margarette.jones@testtask.com",
+      "role": "User",
+      "status": "Active",
+      "_id": "1"
+    },
+    "2": {
+      "firstname": "Bethany",
+      "lastname": "Doe",
+      "email": "bethany.doe@testtask.com",
+      "role": "User",
+      "status": "Active",
+      "_id": "2"
+    },
+    "3": {
+      "firstname": "Andy",
+      "lastname": "King",
+      "email": "king@abv.bg",
+      "role": "User",
+      "status": "Active",
+      "_id": "3"
+    },
+    "4": {
+      "firstname": "pesho",
+      "lastname": "peshev",
+      "email": "pesho@abv.bg",
+      "role": "Admin",
+      "status": "Active",
+      "_id": "4"
+    }
+  }
 }

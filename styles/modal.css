@@ -108,6 +108,13 @@
     margin-top: 62.5px;
 }
 
+.input-role::after {
+    content: url('../assets/images/polygon.svg');
+    position: relative;
+    bottom: 3px;
+    left: -24px;
+}
+
 .input-role-input {
     border: none;
     border-bottom: 2px solid #C6C6C6;

@@ -244,3 +244,10 @@ main {
     padding-left: 11px;
     padding-right: 14px;
 }
+
+.no-users {
+    margin: 200px 0 0 700px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+}

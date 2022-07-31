@@ -21,14 +21,14 @@ const homeTemplate = (onSubmit, users, sortByUsername, sortByRole, sortByStatus)
     </section>
     <section class="table-user-details">
 
-        ${users.length == 0 ? html`<p>No users in database!</p>` 
-        : users.map(userTemplate)}
+        ${Object.values(users).length == 0 ? html`<p class="no-users">No users in database!</p>` 
+        : Object.values(users).map(userTemplate)}
 
     
     <section class="paginator">
         <article class="pag-left">
             <p class="pag-rec">Records on page</p>
-            <p class="pag-num">5</p>
+            <p class="pag-num">${Object.values(users).length}</p>
         </article>
         <article class="pag-right">
             <p class="pag-previous">Previous</p>
@@ -81,7 +81,7 @@ const userTemplate = (user) => html`
 <section class="user-row">
             <article class="user-icon"></article>
             <article class="name-and-mail">
-                <p class="user-name">${user.firstname}</p>
+                <p class="user-name">${user.firstname} ${user.lastname}</p>
                 <p class="user-mail">${user.email}</p>
             </article>
             <article class="user-role">
@@ -100,20 +100,21 @@ const userTemplate = (user) => html`
         </section>
 `;
 
-const users = await getAllUsers();
-console.log(users);
-
 
 export async function homePage(ctx) {
     
     let users = await getAllUsers();
 
     function sortByUsername() {
-        console.log("it works");
+        let sorted = Object.values(users).sort((a, b) => a.firstname.localeCompare(b.firstname));
+        users = sorted;
+        ctx.render(homeTemplate(onSubmit, users, sortByUsername, sortByRole, sortByStatus));
     }
 
     function sortByRole() {
-
+        let sorted = Object.values(users).sort((a, b) => a.role.localeCompare(b.role));
+        users = sorted;
+        ctx.render(homeTemplate(onSubmit, users, sortByUsername, sortByRole, sortByStatus));
     }
 
     function sortByStatus() {
@@ -132,19 +133,25 @@ export async function homePage(ctx) {
         const role = formData.get('role');
         const status = "Active";
 
+        let userData = await getAllUsers();
+        let current_index = String(Object.values(userData).length +'');
 
-        const data = {
-            userId: {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                role: role,
-                status: status
-            }
+        const data =
+        {
+            firstname: firstName,
+            lastname: lastName,
+            email: email,
+            role: role,
+            status: status,
+            "_id": current_index
         }
 
+        userData[current_index] = data;
+
         try {
-            await inviteUser(data);
+            await inviteUser(userData);
+            let inputs = document.querySelectorAll('input');
+            inputs.forEach(input => input.value = '');
         } catch (err) {
             console.log(err);
         }
