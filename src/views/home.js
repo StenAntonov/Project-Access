@@ -83,13 +83,9 @@ const homeTemplate = (onSubmit, users, sortByUsername, sortByRole, sortByStatus,
             <h1 class="modal-heading">Delete User</h1>
             <div class="user-names">
                     <div>
-                        <p class="delete-names">${user.firstname} ${user.lastname}<img class="face-icon"
+                        <p class="delete-names">Danniel Blichman<img class="face-icon"
                                 src="./assets/images/face-24px (1).svg" alt="face"></p>
                        
-                    </div>
-                    <div>
-                        <input class="input-lastname" id="lastName" name="lastName" type="text"
-                            placeholder="* Last Name">
                     </div>
             <button class="delete-user-btn">Delete User</button>
         </div>
@@ -112,7 +108,7 @@ const userTemplate = (user, deleteUser) => html`
             <article class="user-status"></article>
             <article class="user-action">
                 <a href="/user" class="user-setup"></a>
-                <a @click=${deleteUser} href="javascript:void(0)" id="delete" class="delete-user"></a>
+                <a @click=${deleteUser, user} href="javascript:void(0)" id="delete" class="delete-user"></a>
             </article>
             <article class="bottom-line"><img src="./assets/images/Rectangle 16.svg" alt="bottom-line">
             </article>
@@ -169,6 +165,10 @@ export async function homePage(ctx) {
 
         userData[current_index] = data;
 
+        if(firstname == '' || lastname == '' || email == '' || role == '') {
+
+        }
+
         try {
             await inviteUser(userData);
             let inputs = document.querySelectorAll('input');
@@ -180,10 +180,10 @@ export async function homePage(ctx) {
         ctx.page.redirect('/home');
     }
 
-    async function deleteUser(id) {
-        event.preventDefault();
+    async function deleteUser(e, user, ctx) {
+        e.preventDefault();
 
-        console.log(event.target);
+        console.log(user);
     }
 
 
