@@ -4,7 +4,7 @@ import { getAllUsers, inviteUser } from '../api/data.js';
 
 
 
-const homeTemplate = (onSubmit, users, sortByUsername, sortByRole, sortByStatus) => html`
+const homeTemplate = (onSubmit, users, sortByUsername, sortByRole, sortByStatus, deleteUser) => html`
 <header>
     <h1 class="header-h1">Project Access</h1>
     <div class="search">
@@ -41,7 +41,7 @@ const homeTemplate = (onSubmit, users, sortByUsername, sortByRole, sortByStatus)
     <div id="myModal" class="modal">
 
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span id="close" class="close">&times;</span>
             <h1 class="modal-heading">Invite New User</h1>
             <form @submit=${onSubmit} class="create-form">
                 <div class="user-names">
@@ -75,9 +75,28 @@ const homeTemplate = (onSubmit, users, sortByUsername, sortByRole, sortByStatus)
             </form>
         </div>
     </div>
+
+    <div id="deleteModal" class="deleteModal">
+
+        <div class="delete-modal-content">
+            <span id="deleteSpan" class="delete-close">&times;</span>
+            <h1 class="modal-heading">Delete User</h1>
+            <div class="user-names">
+                    <div>
+                        <p class="delete-names">${user.firstname} ${user.lastname}<img class="face-icon"
+                                src="./assets/images/face-24px (1).svg" alt="face"></p>
+                       
+                    </div>
+                    <div>
+                        <input class="input-lastname" id="lastName" name="lastName" type="text"
+                            placeholder="* Last Name">
+                    </div>
+            <button class="delete-user-btn">Delete User</button>
+        </div>
+    </div>
 </main>`;
 
-const userTemplate = (user) => html`
+const userTemplate = (user, deleteUser) => html`
 <section class="user-row">
             <article class="user-icon"></article>
             <article class="name-and-mail">
@@ -93,7 +112,7 @@ const userTemplate = (user) => html`
             <article class="user-status"></article>
             <article class="user-action">
                 <a href="/user" class="user-setup"></a>
-                <a href="#" class="delete-user" onclick="deleteUser()"></a>
+                <a @click=${deleteUser} href="javascript:void(0)" id="delete" class="delete-user"></a>
             </article>
             <article class="bottom-line"><img src="./assets/images/Rectangle 16.svg" alt="bottom-line">
             </article>
@@ -108,20 +127,22 @@ export async function homePage(ctx) {
     function sortByUsername() {
         let sorted = Object.values(users).sort((a, b) => a.firstname.localeCompare(b.firstname));
         users = sorted;
-        ctx.render(homeTemplate(onSubmit, users, sortByUsername, sortByRole, sortByStatus));
+        ctx.render(homeTemplate(onSubmit, users, sortByUsername, sortByRole, sortByStatus, deleteUser));
     }
 
     function sortByRole() {
         let sorted = Object.values(users).sort((a, b) => a.role.localeCompare(b.role));
         users = sorted;
-        ctx.render(homeTemplate(onSubmit, users, sortByUsername, sortByRole, sortByStatus));
+        ctx.render(homeTemplate(onSubmit, users, sortByUsername, sortByRole, sortByStatus, deleteUser));
     }
 
     function sortByStatus() {
-        
+        let sorted = Object.values(users).sort((a, b) => a.status.localeCompare(b.status));
+        users = sorted;
+        ctx.render(homeTemplate(onSubmit, users, sortByUsername, sortByRole, sortByStatus, deleteUser));
     }
 
-    ctx.render(homeTemplate(onSubmit, users, sortByUsername, sortByRole, sortByStatus));
+    ctx.render(homeTemplate(onSubmit, users, sortByUsername, sortByRole, sortByStatus, deleteUser));
 
     async function onSubmit(event) {
         event.preventDefault();
@@ -159,14 +180,26 @@ export async function homePage(ctx) {
         ctx.page.redirect('/home');
     }
 
+    async function deleteUser(id) {
+        event.preventDefault();
+
+        console.log(event.target);
+    }
+
 
     // Modal
 
     var modal = document.getElementById("myModal");
 
+    var deleteModal = document.getElementById('deleteModal');
+
     var btn = document.getElementById("myBtn");
 
-    var span = document.getElementsByClassName("close")[0];
+    var deleteBtn = document.getElementById('delete');
+
+    var span = document.getElementById("close");
+
+    var deleteSpan = document.getElementById('deleteSpan');
 
     const form = document.querySelector('form');
     const formBtn = document.getElementsByClassName('invite-btn')[0];
@@ -176,8 +209,17 @@ export async function homePage(ctx) {
         container.disable = true;
     }
 
+    deleteBtn.onclick = function () {
+        deleteModal.style.display = "block";
+        container.disable = true;
+    }
+
     span.onclick = function () {
         modal.style.display = "none";
+    }
+
+    deleteSpan.onclick = function () {
+        deleteModal.style.display = "none";
     }
 
     formBtn.addEventListener('click', onSubmit);
