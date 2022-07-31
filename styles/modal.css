@@ -193,3 +193,29 @@
     margin-top: 179px;
     margin-right: 336px;
 }
+
+.not-ready {
+    color: #F89797;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 21px;
+    font-style: italic;
+    display: none;
+    position: relative;
+    left: 393px;
+    bottom: 44px;
+}
+
+.good-to-go {
+    color: #44D36A;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 21px;
+    font-style: italic;
+    display: none;
+    position: relative;
+    left: 393px;
+    bottom: 44px;
+}

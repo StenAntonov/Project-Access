@@ -165,10 +165,6 @@ export async function homePage(ctx) {
 
         userData[current_index] = data;
 
-        if(firstname == '' || lastname == '' || email == '' || role == '') {
-
-        }
-
         try {
             await inviteUser(userData);
             let inputs = document.querySelectorAll('input');

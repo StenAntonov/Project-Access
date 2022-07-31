@@ -1,0 +1,59 @@
+.settings-wheel {
+    width: 47px;
+    height: 47px;
+    opacity: 37%;
+    position: relative;
+    top: 8px;
+}
+
+.user-settings {
+    background-color: #C6C6C6;
+    position: absolute;
+    top: 175px;
+    left: 159px;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: none;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 300;
+    font-size: 48px;
+    text-align: center;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.user-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.photo {
+    content: url('../assets/images/userIcon.svg');
+    position: relative;
+    top: 82px;
+    left: 192px;
+    width: 233px;
+    height: 233px;
+}
+
+.user-details {
+    width: 500px;
+    margin-left: 262px;
+    margin-top: 50px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: 600;
+}
+
+.user-permissions {
+    width: 500px;
+    margin-right: 150px;
+    margin-top: 50px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: 600;
+}

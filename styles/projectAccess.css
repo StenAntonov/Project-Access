@@ -210,12 +210,12 @@ main {
 
 .pag-left {
     display: flex;
-    padding: 215px 0 0 262px;
+    padding: 100px 0 0 262px;
 }
 
 .pag-right {
     display: flex;
-    padding: 215px 126px 0 0;
+    padding: 100px 126px 0 0;
 }
 
 .pag-previous {
