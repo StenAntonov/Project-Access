@@ -9,6 +9,7 @@ const userTemplate = () => html`
 <main class="user-main">
     <section class="user-photo">
         <article class="photo"></article>
+        <input type="file" class="upload-photo"/>
     </section>
     <section class="user-details">
         <h1 className="user-details-h1">Details</h1>

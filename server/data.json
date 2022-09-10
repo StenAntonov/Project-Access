@@ -15,6 +15,22 @@
       "role": "User",
       "status": "Active",
       "_id": "1"
+    },
+    "2": {
+      "firstname": "sten",
+      "lastname": "antonov",
+      "email": "sten@abv.bg",
+      "role": "Admin",
+      "status": "Active",
+      "_id": "2"
+    },
+    "3": {
+      "firstname": "oscar",
+      "lastname": "pete",
+      "email": "oscar@abv.bg",
+      "role": "Admin",
+      "status": "Active",
+      "_id": "3"
     }
   }
 }
